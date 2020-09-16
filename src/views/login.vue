@@ -81,13 +81,18 @@ export default {
   methods: {
     login () {
       login.login(this.loginData).then(response => {
-        console.log('測試' + this.loginData.username + ':' + this.loginData.password)
+        // console.log('測試' + this.loginData.username + ':' + this.loginData.password)
         if (response.data.code === 20000) {
           this.$message({
             message: '登录成功',
             type: 'success'
           })
-          this.$router.push({ name: 'Blog' })
+          const jwt = response.headers.authorization // 获取响应头中token
+          const userInfo = response.data.data.loginMD // 获取响应中用户信息
+          this.$store.commit('SET_TOKEN', jwt)
+          this.$store.commit('SET_USERINFO', userInfo)
+          this.$store.commit('SET_LOGIN_FLAG', true)
+          this.$router.push({ name: 'Blog' }) // 跳转到博客界面
         } else {
           this.$message.error(response.data.message)
         }
@@ -102,20 +107,7 @@ export default {
             message: '注册成功',
             type: 'success'
           })
-        } else {
-          this.$message.error(response.data.message)
-        }
-      }).catch(error => {
-        this.$message.error(error.data.message)
-      })
-    },
-    logout () {
-      login.logout().then(response => {
-        if (response.data.code === 20000) {
-          this.$message({
-            message: '登出成功',
-            type: 'success'
-          })
+          this.login()
         } else {
           this.$message.error(response.data.message)
         }

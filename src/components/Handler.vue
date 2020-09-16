@@ -12,8 +12,11 @@
             <li><a href="#" @click.stop.self="links()">友情链接</a></li>
           </ul>
         </nav>
-        <a href="#" class="blog-user">
+        <a href="#" class="blog-user" v-if="!$store.state.loginFlag">
           <i class="el-icon-user-solid" @click="login()"></i>
+        </a>
+        <a href="#" class="blog-user" v-if="$store.state.loginFlag">
+          <img class="avatar" :src="avatar" @click="logOut()"/>
         </a>
         <a class="phone-menu">
           <i></i>
@@ -26,7 +29,23 @@
 </template>
 
 <script>
+import login from '@/api/login'
+
 export default {
+  name: 'Handler',
+  data () {
+    return {
+      avatar: ''
+    }
+  },
+  created () {
+    if (this.$store.state.token === '' || this.$store.state.token == null) { // token为空，则登录状态false
+      this.$store.commit('SET_LOGIN_FLAG', false)
+    } else if (this.$store.state.userInfo != null || this.$store.state.userInfo !== undefined) { // token有值，判断用户
+      this.$store.commit('SET_LOGIN_FLAG', true)
+      this.avatar = this.$store.state.userInfo.avatar // 获取头像
+    }
+  },
   methods: {
     blog () {
       this.$router.push({ name: 'Blog' })
@@ -42,6 +61,28 @@ export default {
     },
     links () {
       // this.$router.push({name:'友链'})
+    },
+    logOut () {
+      this.$confirm('是否退出登录', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        login.logout().then(response => {
+          if (response.data.code === 20000) {
+            this.$message({
+              message: '退出成功',
+              type: 'success'
+            })
+            this.$store.commit('SET_LOGOUT') // 清空vuex 用户信息
+            this.$router.push({ name: 'Blog' }) // 跳转博客界面
+          } else {
+            this.$message.error(response.data.message)
+          }
+        }).catch(error => {
+          this.$message.error(error.data.message)
+        })
+      })
     }
   }
 }
@@ -157,5 +198,11 @@ li {
   line-height: 60px;
   font-size: 24px;
   color: #000000;
+}
+
+.blog-user img {
+  width: 35px;
+  border-radius: 35px;
+  box-shadow: 1px 3px 9px rgba(0,0,0,0.5);
 }
 </style>
