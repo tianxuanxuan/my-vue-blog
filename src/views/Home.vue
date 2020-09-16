@@ -3,7 +3,7 @@
     <div class="height1">
       <div class="height1_Div">
         <h1>我的博客</h1>
-        <p>你现在要做的是：多读书，按时睡，然后变得温柔，大度，继续善良，保持可爱。</p>
+        <p>{{randomSentence()}}</p>
         <el-button type="primary" id="height1_button" @click="enterBlog()">进入 Blog</el-button>
       </div>
     </div>
@@ -15,7 +15,19 @@
 
 export default {
   data () {
-    return {}
+    return {
+      randomSentences: ['有的人，该忘就忘了吧，人家不在乎你，又何必自作多情。',
+        '你现在要做的是：多读书，按时睡，然后变得温柔，大度，继续善良，保持可爱。',
+        '希望你能遇到一个对你心动的人，而不是权衡取舍分析利弊后，觉得你不错的人。',
+        '僵尸打开了你的脑子，摇摇头失望的走了，路过的屎壳郎却眼前一亮。',
+        '其实我很想念。某些时候。某些人。某些事。',
+        '愿你过得好，祝我也顺心，不谈亏欠，谢谢曾遇见。',
+        '明天怎样，没人知晓，生活本是一次疯狂的旅程，没什么是确定无疑的。',
+        '请关心一下身边的吃货，可能她一不留神就撑死了。',
+        '你从未驯服过她，她只是在爱你的时候才收起了獠牙。',
+        '确实没有人随心所欲地活着，生命即是束缚。'
+      ]
+    }
   },
   created () {
     window.onload = function () {
@@ -26,6 +38,9 @@ export default {
   methods: {
     enterBlog () {
       this.$router.push({ name: 'Blog' })
+    },
+    randomSentence () {
+      return this.randomSentences[Math.floor(Math.random() * 10)]
     }
   }
 }
