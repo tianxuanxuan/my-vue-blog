@@ -107,6 +107,8 @@ export default {
             message: '注册成功',
             type: 'success'
           })
+          this.loginData.username = this.registerData.username
+          this.loginData.password = this.registerData.password
           this.login()
         } else {
           this.$message.error(response.data.message)
