@@ -162,7 +162,6 @@ export default {
   transition: 0.5s;
   overflow: hidden;
   position: relative;
-
 }
 
 #item:hover {

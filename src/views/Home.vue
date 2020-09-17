@@ -2,9 +2,9 @@
   <div class="home">
     <div class="height1">
       <div class="height1_Div">
-        <h1>我的博客</h1>
+        <h1>我 的 博 客</h1>
         <p>{{randomSentence()}}</p>
-        <el-button type="primary" id="height1_button" @click="enterBlog()">进入 Blog</el-button>
+        <el-button type="primary" id="height1_button" @click="enterBlog()">点击进入</el-button>
       </div>
     </div>
   </div>
@@ -102,9 +102,9 @@ export default {
   line-height: 38px;
   padding: 0 18px;
   text-align: center;
-  font-size: 14px;
+  font-size: 18px;
   border: none;
-  border-radius: 2px;
+  border-radius: 10px;
   cursor: pointer; /* 鼠标指针指入变为手的形状 */
 }
 </style>
