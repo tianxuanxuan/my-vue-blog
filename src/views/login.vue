@@ -15,8 +15,8 @@
                       <h4 class="mb-4 pb-3">登录</h4>
                       <div class="form-group">
                         <input type="text" name="username" v-model="loginData.username" class="form-style"
-                               placeholder="用户名" id="logemail" autocomplete="off">
-                        <i class="input-icon uil uil-at"></i>
+                               placeholder="用户名" id="logname" autocomplete="off">
+                        <i class="input-icon uil uil-user"></i>
                       </div>
                       <div class="form-group mt-2">
                         <input type="password" name="logpass" v-model="loginData.password" class="form-style"

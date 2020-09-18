@@ -1,32 +1,5 @@
 <template>
   <header class="Handler">
-    <div class="header-fixed">
-      <div class="header-inner">
-        <a href="javascript:void(0)" class="header-logo" id="logo">Mr.liu</a>
-        <nav class="nav" id="nav">
-          <ul>
-            <li><a href="/" >首页</a></li>
-            <li><a href="#" @click.stop.self="blog()">博客</a></li>
-            <li><a href="#" @click.stop.self="leaveWord()">留言</a></li>
-            <li><a href="#" @click.stop.self="diary()">日记</a></li>
-            <li><a href="#" @click.stop.self="FriendsOfTheChain()">友链</a></li>
-          </ul>
-        </nav>
-        <a href="#" class="blog-user">
-          <i class="el-icon-user-solid" @click="login()"></i>
-        </a>
-        <a class="phone-menu">
-          <i></i>
-          <i></i>
-          <i></i>
-        </a>
-      </div>
-    </div>
-  </header>
-</template>
-
-<template>
-  <header class="Handler">
     <div class="header-fix">
       <div class="header-inner">
         <a href="javascript:void(0)" class="header-logo" id="logo">My Blog</a>
@@ -81,7 +54,7 @@ export default {
       this.$router.push({ name: 'Login' })
     },
     leaveWord () {
-      // this.$router.push({name:'留言'})
+      this.$router.push({ name: 'LeaveWord' })
     },
     diary () {
       // this.$router.push({name:'日记'})
@@ -230,6 +203,6 @@ li {
 .blog-user img {
   width: 35px;
   border-radius: 35px;
-  box-shadow: 1px 3px 9px rgba(0,0,0,0.5);
+  box-shadow: 1px 3px 9px rgba(0, 0, 0, 0.5);
 }
 </style>

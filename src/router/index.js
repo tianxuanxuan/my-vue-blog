@@ -5,6 +5,7 @@ import Login from '../views/login.vue'
 import Blog from '../views/blog.vue'
 import BlogDetail from '../views/blogDetail.vue'
 import BlogEdit from '../views/blogEdit.vue'
+import LeaveWord from '../views/leaveWord'
 
 Vue.use(VueRouter)
 
@@ -55,6 +56,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: BlogDetail
+  },
+  {
+    path: '/LeaveWord',
+    name: 'LeaveWord',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: LeaveWord
   }
 ]
 
